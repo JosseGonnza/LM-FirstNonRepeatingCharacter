@@ -84,17 +84,9 @@ public class NonRepeatingLetterShould
     private static string FirstNonRepeatingLetter(string word)
     {
         var lowerWord = word.ToLower();
-        for (int i = 0; i < lowerWord.Length; i++)
+        for (var i = 0; i < lowerWord.Length; i++)
         {
-            var isNonRepeat = true;
-            for (int j = 0; j < lowerWord.Length; j++)
-            {
-                if (i != j && lowerWord[i] == lowerWord[j])
-                {
-                    isNonRepeat = false;
-                    break;
-                }
-            }
+            var isNonRepeat = !lowerWord.Where((t, j) => i != j && lowerWord[i] == t).Any();
             if (isNonRepeat)
             {
                 return word[i].ToString();
