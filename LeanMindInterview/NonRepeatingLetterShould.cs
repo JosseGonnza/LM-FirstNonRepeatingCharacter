@@ -7,6 +7,7 @@ namespace LeanMindInterview;
  * "ss" -> ""
  * "**" -> ""
  * "sstt" -> ""
+ * 
  * "s" -> "s"
  * "*" -> "*"
  *
@@ -19,7 +20,7 @@ namespace LeanMindInterview;
  * "sttrs" -> "r"
  * "stt*s" -> "*"
  */
-public class UnitTest1
+public class NonRepeatingLetterShould
 {
     [Fact(DisplayName = "when word is empty result is empty text")]
     public void when_word_is_empty_result_is_empty_text()
@@ -31,14 +32,15 @@ public class UnitTest1
         result.Should().Be("");
     }
     
-    [Fact(DisplayName = "when word contains a non repeated result is this character")]
-    public void when_word_contains_a_non_repeated_result_is_this_character()
+    [Theory(DisplayName = "when word contains a non repeated result is this character")]
+    [InlineData("s", "s")]
+    [InlineData("*", "*")]
+    [InlineData(@"\", @"\")]
+    public void when_word_contains_a_non_repeated_result_is_this_character(string word, string expected)
     {
-        var word = "s";
-
         var result = FirstNonRepeatingLetter(word);
 
-        result.Should().Be("s");
+        result.Should().Be(expected);
     }
 
     [Theory(DisplayName = "when word contains all characters repeated result is empty text")]
@@ -53,7 +55,7 @@ public class UnitTest1
         result.Should().Be("");
     }
     
-    private string FirstNonRepeatingLetter(string word)
+    private static string FirstNonRepeatingLetter(string word)
     {
         if (word.Length == 0)
         {
