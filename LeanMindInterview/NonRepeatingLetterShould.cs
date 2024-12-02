@@ -7,7 +7,7 @@ namespace LeanMindInterview;
  * "ss" -> ""
  * "**" -> ""
  * "sstt" -> ""
- * 
+ *
  * "s" -> "s"
  * "*" -> "*"
  *
@@ -55,23 +55,41 @@ public class NonRepeatingLetterShould
         result.Should().Be("");
     }
     
+    [Fact(DisplayName = "when word contains a non repeated result is the first letter that non repeated")]
+    public void when_word_contains_a_non_repeated_result_is_the_first_letter_that_non_repeated()
+    {
+        var word = "st";
+
+        var result = FirstNonRepeatingLetter(word);
+
+        result.Should().Be("s");
+    }
+    
     private static string FirstNonRepeatingLetter(string word)
     {
         if (word.Length == 0)
         {
             return "";
         }
-        var charArray = word.ToCharArray();
-        if (word.Length != 1)
+
+        for (int i = 0; i < word.Length; i++)
         {
-            for (int i = 0; i < charArray.Length; i++)
+            var isNonRepeat = true;
+
+            for (int j = 0; j < word.Length; j++)
             {
-                if (charArray[i] == charArray[i + 1])
+                if (i != j && word[i] == word[j])
                 {
-                    return "";
+                    isNonRepeat = false;
+                    break;
                 }
             }
+
+            if (isNonRepeat)
+            {
+                return word[i].ToString();
+            }
         }
-        return word;
+        return "";
     }
 }
