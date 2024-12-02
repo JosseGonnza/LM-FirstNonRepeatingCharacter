@@ -9,6 +9,7 @@ namespace LeanMindInterview;
  * "sstt" -> ""
  *
  * "s" -> "s"
+ * "S" -> "S"
  * "*" -> "*"
  *
  * "st" -> "s"
@@ -19,6 +20,10 @@ namespace LeanMindInterview;
  *
  * "sttrs" -> "r"
  * "stt*s" -> "*"
+ *
+ * "sTs" -> "T"
+ * "stTrs" -> "r"
+ * "sTreSS" -> "T"
  */
 public class NonRepeatingLetterShould
 {
@@ -79,14 +84,26 @@ public class NonRepeatingLetterShould
         result.Should().Be(expected);
     }
     
+    [Theory(DisplayName = "when word contains upper and lower case and result be the correct case")]
+    [InlineData("sTs", "T")]
+    [InlineData("stTrs", @"r")]
+    [InlineData("sTreSS", @"T")]
+    public void when_word_contains_upper_and_lower_case_and_result_be_the_correct_case(string word, string expected)
+    {
+        var result = FirstNonRepeatingLetter(word);
+
+        result.Should().Be(expected);
+    }
+    
     private static string FirstNonRepeatingLetter(string word)
     {
-        for (int i = 0; i < word.Length; i++)
+        var lowerWord = word.ToLower();
+        for (int i = 0; i < lowerWord.Length; i++)
         {
             var isNonRepeat = true;
-            for (int j = 0; j < word.Length; j++)
+            for (int j = 0; j < lowerWord.Length; j++)
             {
-                if (i != j && word[i] == word[j])
+                if (i != j && lowerWord[i] == lowerWord[j])
                 {
                     isNonRepeat = false;
                     break;
