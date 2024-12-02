@@ -41,22 +41,27 @@ public class UnitTest1
         result.Should().Be("s");
     }
 
-    // [Fact(DisplayName = "when word contains all characters repeated result is empty text")]
-    // public void when_word_contains_all_characters_repeated_result_is_empty_text()
-    // {
-    //     var word = "ss";
-    //
-    //     var result = firstNonRepeatingLetter(word);
-    //
-    //     result.Should().Be("");
-    // }
+    [Fact(DisplayName = "when word contains all characters repeated result is empty text")]
+    public void when_word_contains_all_characters_repeated_result_is_empty_text()
+    {
+        var word = "ss";
+    
+        var result = firstNonRepeatingLetter(word);
+    
+        result.Should().Be("");
+    }
     
     private string firstNonRepeatingLetter(string word)
     {
-        if (word.Length != 0)
+        if (word.Length == 0)
         {
-            return word;
+            return "";
         }
-        return "";
+        var charArray = word.ToCharArray();
+        if (word.Length == 2 && charArray[0] == charArray[1])
+        {
+            return "";
+        }
+        return word;
     }
 }
