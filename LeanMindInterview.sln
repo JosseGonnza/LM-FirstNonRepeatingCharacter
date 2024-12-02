@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanMindInterview", "LeanMindInterview\LeanMindInterview.csproj", "{78BEE447-3C0E-45B7-839A-0A5E0F170117}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMInterview", "LMInterview\LMInterview.csproj", "{78BEE447-3C0E-45B7-839A-0A5E0F170117}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 using FluentAssertions;
 
-namespace LeanMindInterview;
+namespace LMInterview;
 /*
  * "" -> ""
  *
@@ -30,11 +30,7 @@ public class NonRepeatingLetterShould
     [Fact(DisplayName = "when word is empty result is empty text")]
     public void when_word_is_empty_result_is_empty_text()
     {
-        var word = "";
-
-        var result = FirstNonRepeatingLetter(word);
-
-        result.Should().Be("");
+        FirstNonRepeatingLetter("").Should().Be("");
     }
     
     [Theory(DisplayName = "when word contains a non repeated result is this character")]
@@ -43,11 +39,9 @@ public class NonRepeatingLetterShould
     [InlineData(@"\", @"\")]
     public void when_word_contains_a_non_repeated_result_is_this_character(string word, string expected)
     {
-        var result = FirstNonRepeatingLetter(word);
-
-        result.Should().Be(expected);
+        FirstNonRepeatingLetter(word).Should().Be(expected);
     }
-
+    
     [Theory(DisplayName = "when word contains all characters repeated result is empty text")]
     [InlineData("ss")]
     [InlineData("**")]
@@ -55,9 +49,7 @@ public class NonRepeatingLetterShould
     [InlineData("sstt")]
     public void when_word_contains_all_characters_repeated_result_is_empty_text(string word)
     {
-        var result = FirstNonRepeatingLetter(word);
-    
-        result.Should().Be("");
+        FirstNonRepeatingLetter(word).Should().Be("");
     }
     
     [Theory(DisplayName = "when word contains a non repeated result is the first letter that non repeated")]
@@ -66,9 +58,7 @@ public class NonRepeatingLetterShould
     [InlineData(@"\*", @"\")]
     public void when_word_contains_a_non_repeated_result_is_the_first_letter_that_non_repeated(string word, string expected)
     {
-        var result = FirstNonRepeatingLetter(word);
-
-        result.Should().Be(expected);
+        FirstNonRepeatingLetter(word).Should().Be(expected);
     }
     
     [Theory(DisplayName = "when word contains several repeated letters and result is the first letter that non repeated")]
@@ -79,9 +69,7 @@ public class NonRepeatingLetterShould
     [InlineData("stt*s", @"*")]
     public void when_word_contains_several_repeated_letters_and_result_is_the_first_letter_that_non_repeated(string word, string expected)
     {
-        var result = FirstNonRepeatingLetter(word);
-
-        result.Should().Be(expected);
+        FirstNonRepeatingLetter(word).Should().Be(expected);
     }
     
     [Theory(DisplayName = "when word contains upper and lower case and result be the correct case")]
@@ -90,9 +78,7 @@ public class NonRepeatingLetterShould
     [InlineData("sTreSS", @"T")]
     public void when_word_contains_upper_and_lower_case_and_result_be_the_correct_case(string word, string expected)
     {
-        var result = FirstNonRepeatingLetter(word);
-
-        result.Should().Be(expected);
+        FirstNonRepeatingLetter(word).Should().Be(expected);
     }
     
     private static string FirstNonRepeatingLetter(string word)
