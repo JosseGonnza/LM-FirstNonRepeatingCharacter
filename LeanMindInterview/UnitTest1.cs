@@ -41,11 +41,12 @@ public class UnitTest1
         result.Should().Be("s");
     }
 
-    [Fact(DisplayName = "when word contains all characters repeated result is empty text")]
-    public void when_word_contains_all_characters_repeated_result_is_empty_text()
+    [Theory(DisplayName = "when word contains all characters repeated result is empty text")]
+    [InlineData("ss")]
+    [InlineData("**")]
+    [InlineData("\\\\")]
+    public void when_word_contains_all_characters_repeated_result_is_empty_text(string word)
     {
-        var word = "ss";
-    
         var result = firstNonRepeatingLetter(word);
     
         result.Should().Be("");
