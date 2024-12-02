@@ -70,6 +70,8 @@ public class NonRepeatingLetterShould
     [InlineData("sts", "t")]
     [InlineData("s*s", "*")]
     [InlineData(@"\*\", @"*")]
+    [InlineData("sttrs", @"r")]
+    [InlineData("stt*s", @"*")]
     public void when_word_contains_several_repeated_letters_and_result_is_the_first_letter_that_non_repeated(string word, string expected)
     {
         var result = FirstNonRepeatingLetter(word);
@@ -79,15 +81,9 @@ public class NonRepeatingLetterShould
     
     private static string FirstNonRepeatingLetter(string word)
     {
-        if (word.Length == 0)
-        {
-            return "";
-        }
-
         for (int i = 0; i < word.Length; i++)
         {
             var isNonRepeat = true;
-
             for (int j = 0; j < word.Length; j++)
             {
                 if (i != j && word[i] == word[j])
@@ -96,7 +92,6 @@ public class NonRepeatingLetterShould
                     break;
                 }
             }
-
             if (isNonRepeat)
             {
                 return word[i].ToString();
