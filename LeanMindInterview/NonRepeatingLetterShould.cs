@@ -55,14 +55,15 @@ public class NonRepeatingLetterShould
         result.Should().Be("");
     }
     
-    [Fact(DisplayName = "when word contains a non repeated result is the first letter that non repeated")]
-    public void when_word_contains_a_non_repeated_result_is_the_first_letter_that_non_repeated()
+    [Theory(DisplayName = "when word contains a non repeated result is the first letter that non repeated")]
+    [InlineData("st", "s")]
+    [InlineData("*t", "*")]
+    [InlineData(@"\*", @"\")]
+    public void when_word_contains_a_non_repeated_result_is_the_first_letter_that_non_repeated(string word, string expected)
     {
-        var word = "st";
-
         var result = FirstNonRepeatingLetter(word);
 
-        result.Should().Be("s");
+        result.Should().Be(expected);
     }
     
     private static string FirstNonRepeatingLetter(string word)
