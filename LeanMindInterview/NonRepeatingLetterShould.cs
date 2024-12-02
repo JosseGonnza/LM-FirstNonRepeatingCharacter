@@ -66,6 +66,17 @@ public class NonRepeatingLetterShould
         result.Should().Be(expected);
     }
     
+    [Theory(DisplayName = "when word contains several repeated letters and result is the first letter that non repeated")]
+    [InlineData("sts", "t")]
+    [InlineData("s*s", "*")]
+    [InlineData(@"\*\", @"*")]
+    public void when_word_contains_several_repeated_letters_and_result_is_the_first_letter_that_non_repeated(string word, string expected)
+    {
+        var result = FirstNonRepeatingLetter(word);
+
+        result.Should().Be(expected);
+    }
+    
     private static string FirstNonRepeatingLetter(string word)
     {
         if (word.Length == 0)
