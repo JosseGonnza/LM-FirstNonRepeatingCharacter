@@ -26,7 +26,7 @@ public class UnitTest1
     {
         var word = "";
 
-        var result = firstNonRepeatingLetter(word);
+        var result = FirstNonRepeatingLetter(word);
 
         result.Should().Be("");
     }
@@ -36,7 +36,7 @@ public class UnitTest1
     {
         var word = "s";
 
-        var result = firstNonRepeatingLetter(word);
+        var result = FirstNonRepeatingLetter(word);
 
         result.Should().Be("s");
     }
@@ -44,24 +44,31 @@ public class UnitTest1
     [Theory(DisplayName = "when word contains all characters repeated result is empty text")]
     [InlineData("ss")]
     [InlineData("**")]
-    [InlineData("\\\\")]
+    [InlineData(@"\\")]
+    [InlineData("sstt")]
     public void when_word_contains_all_characters_repeated_result_is_empty_text(string word)
     {
-        var result = firstNonRepeatingLetter(word);
+        var result = FirstNonRepeatingLetter(word);
     
         result.Should().Be("");
     }
     
-    private string firstNonRepeatingLetter(string word)
+    private string FirstNonRepeatingLetter(string word)
     {
         if (word.Length == 0)
         {
             return "";
         }
         var charArray = word.ToCharArray();
-        if (word.Length == 2 && charArray[0] == charArray[1])
+        if (word.Length != 1)
         {
-            return "";
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if (charArray[i] == charArray[i + 1])
+                {
+                    return "";
+                }
+            }
         }
         return word;
     }
